@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    cursor: crosshair;
+}
+
+/* UI Overlay */
+#ui-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Connection Status */
+#connection-status {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.status-connected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.status-disconnected {
+    background-color: #f44336;
+    color: white;
+}
+
+.status-connecting {
+    background-color: #ff9800;
+    color: white;
+}
+
+/* Player List */
+#player-list {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    min-width: 200px;
+    pointer-events: none;
+}
+
+#player-list h3 {
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+#players {
+    list-style: none;
+}
+
+#players li {
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+}
+
+#players li:last-child {
+    border-bottom: none;
+}
+
+/* Controls */
+#controls {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+#controls h3 {
+    margin-bottom: 10px;
+    color: #2196F3;
+}
+
+#controls p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Game Stats */
+#game-stats {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+#game-stats div {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+#game-stats span {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Emote Container */
+#emote-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    pointer-events: auto;
+}
+
+#emote-buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.emote-btn {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #2196F3;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    pointer-events: auto;
+}
+
+.emote-btn:hover {
+    background-color: rgba(33, 150, 243, 0.2);
+    transform: scale(1.1);
+}
+
+.emote-btn:active {
+    transform: scale(0.95);
+}
+
+/* Theme Song Button */
+.theme-song-btn {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    border: 3px solid #FFD93D;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.theme-song-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #FF5252, #26C6DA);
+}
+
+.theme-song-btn:active {
+    transform: scale(0.98);
+}
+
+.theme-song-btn.playing {
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Audio Controls Container */
+#audio-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Pause Button */
+.pause-btn {
+    background: linear-gradient(45deg, #FF9800, #FF5722);
+    border: 3px solid #FFC107;
+    border-radius: 25px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.pause-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #F57C00, #E64A19);
+}
+
+.pause-btn:active {
+    transform: scale(0.98);
+}
+
+/* Cow Noise Button */
+.cow-noise-btn {
+    background: linear-gradient(45deg, #8BC34A, #4CAF50);
+    border: 3px solid #689F38;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cow-noise-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #7CB342, #43A047);
+}
+
+.cow-noise-btn:active {
+    transform: scale(0.98);
+}
+
+.cow-noise-btn.playing {
+    background: linear-gradient(45deg, #FF6B6B, #E91E63);
+    animation: mooPulse 0.5s infinite;
+}
+
+@keyframes mooPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}

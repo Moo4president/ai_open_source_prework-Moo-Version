@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Multiplayer Online Role Playing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    
+    <!-- UI Overlay -->
+    <div id="ui-overlay">
+        <!-- Connection Status -->
+        <div id="connection-status" class="status-disconnected">
+            <span id="status-text">Connecting...</span>
+        </div>
+        
+        <!-- Player List -->
+        <div id="player-list">
+            <h3>Players Online</h3>
+            <ul id="players"></ul>
+        </div>
+        
+        <!-- Controls Info -->
+        <div id="controls">
+            <h3>Controls</h3>
+            <p>Use arrow keys to move around</p>
+            <p>Hold keys for continuous movement</p>
+            <p>Press 1-9 for emotes</p>
+        </div>
+        
+        <!-- Emote Buttons -->
+        <div id="emote-container">
+            <div id="emote-buttons">
+                <button class="emote-btn" data-emote="😀">😀</button>
+                <button class="emote-btn" data-emote="😂">😂</button>
+                <button class="emote-btn" data-emote="😍">😍</button>
+                <button class="emote-btn" data-emote="🤔">🤔</button>
+                <button class="emote-btn" data-emote="😎">😎</button>
+                <button class="emote-btn" data-emote="🥳">🥳</button>
+                <button class="emote-btn" data-emote="😢">😢</button>
+                <button class="emote-btn" data-emote="😡">😡</button>
+                <button class="emote-btn" data-emote="❤️">❤️</button>
+            </div>
+            <div id="audio-controls">
+                <button id="theme-song-btn" class="theme-song-btn">🎵 Play Cow Theme Song 🎵</button>
+                <button id="pause-btn" class="pause-btn" style="display: none;">⏸️ Pause Music ⏸️</button>
+                <button id="cow-noise-btn" class="cow-noise-btn">🐄 Moo! 🐄</button>
+            </div>
+        </div>
+        
+        <!-- Game Stats -->
+        <div id="game-stats">
+            <div>Position: <span id="player-position">-</span></div>
+            <div>Players: <span id="player-count">0</span></div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
